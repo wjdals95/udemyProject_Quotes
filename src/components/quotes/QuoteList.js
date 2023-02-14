@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation, useRouteMatch } from "react-router-dom";
 
 import QuoteItem from "./QuoteItem";
 import classes from "./QuoteList.module.css";
@@ -13,6 +13,7 @@ const sortQuotes = (quotes, ascending) => {
   });
 };
 const QuoteList = (props) => {
+
   const history = useHistory();
   const location = useLocation();
 
@@ -24,7 +25,12 @@ const QuoteList = (props) => {
   
 
   const changeSortingHandler = () => {
-    history.push("/quotes?sort=" + (isSortingAscending ? 'desc' : 'asc'));
+    //가독성을 높이기 위해 리액트 라우터가 제공하는 기능 사용
+    history.push({
+      pathname: location.pathname,
+      search: `?sort=${(isSortingAscending ? 'desc' : 'asc')}`
+    })
+    //history.push(`${location.pathname}?sort=${(isSortingAscending ? 'desc' : 'asc')}`);
   };
 
   return (
