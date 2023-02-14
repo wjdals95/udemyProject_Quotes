@@ -8,6 +8,7 @@ import classes from "./QuoteForm.module.css";
 
 const QuoteForm = (props) => {
   const [isEntering, setIsEntering] = useState(false);
+
   const authorInputRef = useRef();
   const textInputRef = useRef();
 
@@ -22,7 +23,7 @@ const QuoteForm = (props) => {
     props.onAddQuote({ author: enteredAuthor, text: enteredText });
   }
   const finishEnteringHandler = () => {
-    setIsEntering(true);
+    setIsEntering(false);
   };
   const formFocusHandler = () => {
     setIsEntering(true);
